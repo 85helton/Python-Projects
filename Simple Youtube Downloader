@@ -1,0 +1,21 @@
+# Simple Youtube Video Downloader
+
+from tkinter import *
+from pytube import YouTube
+import tkinter.messagebox
+
+root = Tk()
+root.title('YouTube Downloader')
+
+root.geometry("400x100")
+url=StringVar()
+def download_step():
+    YouTube(url.get()).streams.first().download()
+    tkinter.messagebox.showinfo("YouTube Downloader", "Download completed!")
+
+Label(root, text="Youtube link to download:", font="calibri 10 bold").pack()
+
+url_entry = Entry(root, textvariable=url).pack(pady=10)
+
+Button(root, text='Start download', command=download_step).pack(pady=10)
+root.mainloop()
